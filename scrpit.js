@@ -1,23 +1,27 @@
 const form = document.querySelector('form')
 const k = 7
 const trueOtvet = [
-    ['name0', 'a'],
-    ['name1', 'b'],
-    ['name2', 'c'],
-    ['name3', 'd'],
-    ['name4', 'e'],
-    ['name5', 'f'],
-    ['name6', 'g'],
-    ['name7', 'h'],
+    ['name0', 'a', 'Как срать?'],
+    ['name1', 'b', 'Как какать?'],
+    ['name2', 'c', 'Как писать?'],
+    ['name3', 'd', 'Хочешь питсу?'],
+    ['name4', 'e', 'Богданчик хочет кушать?'],
+    ['name5', 'f', 'Как срать'],
+    ['name6', 'g', 'Как срать'],
+    ['name7', 'h', 'Как срать'],
 ]
 let sortOtvet = []
 const reset = document.querySelector('button[type="button"]')
 
-reset.addEventListener('click', () => {
+function clear() {
     const allInput = form.querySelectorAll('input')
     allInput.forEach((input) => {
         input.value = ''
     })
+}
+
+reset.addEventListener('click', () => {
+    clear()
 })
 
 form.addEventListener('submit', (e) => {
@@ -35,23 +39,28 @@ form.addEventListener('submit', (e) => {
     console.log(sortOtvet)
     alert(`Вы угадали ${sortOtvet.length}/8`)
     sortOtvet = []
+
+    clear()
+    
 })
 
-const createElem = (k = 0) => {
+const createElem = (k = 0, formQuestion) => {
     const block = document.createElement('div')
     block.classList.add('form__elem')
     const input = document.createElement('input')
+    input.classList.add('input-group-text')
     input.setAttribute('type', 'text')
     input.setAttribute('name', `name${k}`)
     input.setAttribute('id', `id${k}`)
+    const question = document.createElement('div')
+    question.classList.add('form__question')
+    question.textContent = formQuestion
     // const btn = document.createElement('button')
     // btn.setAttribute('type', 'submit')
     // btn.textContent = 'Отправить'
-    block.append(input)
+    block.append(question,input)
     form.append(block)
 }
-createElem()
-
-for(i = 1; i <= k; i++) {
-    createElem(i)
-}
+trueOtvet.forEach((item, i) => {
+    createElem(i, item[2])
+})
