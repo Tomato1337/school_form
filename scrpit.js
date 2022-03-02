@@ -52,6 +52,7 @@ const createElem = (k = 0, formQuestion) => {
     input.setAttribute('type', 'text')
     input.setAttribute('name', `name${k}`)
     input.setAttribute('id', `id${k}`)
+    input.required = true
     const question = document.createElement('div')
     question.classList.add('form__question')
     question.textContent = formQuestion
