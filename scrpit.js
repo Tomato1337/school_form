@@ -11,6 +11,14 @@ const trueOtvet = [
     ['name7', 'h'],
 ]
 let sortOtvet = []
+const reset = document.querySelector('button[type="button"]')
+
+reset.addEventListener('click', () => {
+    const allInput = form.querySelectorAll('input')
+    allInput.forEach((input) => {
+        input.value = ''
+    })
+})
 
 form.addEventListener('submit', (e) => {
     e.preventDefault()
